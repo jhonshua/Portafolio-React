@@ -218,28 +218,28 @@ export const projects = [
     iconUrl: pricewise,
     theme: 'btn-back-red',
     name: 'MERN administrative application"Sitam"',
-    video: 'https://www.youtube.com/embed/3pvkQKtkxfk?si=4I5lRtB6RIvEcCVO',
+    video: "https://www.youtube.com/embed/ME6o9UVPc3U?si=mhga8-jGxr41GwNn&amp;controls=0",
     description:
       'In this project we cover the entire development cycle, from front-end (client side) to backend (server side). A scalable and documented project, always taking care of correct practices.',
-    link: 'https://admin.sitamm.com/login',
-    code: 'https://github.com/jhonshua/sitamm',
+    link: 'https://admin.sitamm.com/login'
   },
   {
     iconUrl: car,
     theme: 'btn-back-blue',
-    name: 'MERN administrative application"Grupo Pampas"',
-    video: 'https://www.youtube.com/embed/BVEDotJhUAs?si=v9ug8CSpVEEqCtlK',
+    name: 'MERN administrative application"Dentalink"',
+    video: "https://www.youtube.com/embed/eljjWY_OKPs?si=dT7F_T_d2IFBHJxV&amp;controls=0",
     description:
       'We use JWT for user passwords, we also take care of the responsive design and use several microservices.',
-    link: 'http://128.199.6.217:81/auth/login',
+    link: 'https://frontend-odontologia.vercel.app',
   },
   {
     iconUrl: car,
     theme: 'btn-back-blue',
-    name: 'MEAN medical appointment control',
-    video: 'https://www.youtube.com/embed/XPu74qR9Fx0?si=fwy6l9toAijCR1_n',
+    name: 'Pasta Restaurante Italiano ecommerce',
+    video: "https://www.youtube.com/embed/FhzojXpYr_g?si=P1dwfJhxNlu3LkGa&amp;controls=0",
+    link: 'https://www.alfredos.es/',
     description:
-      'This application has a responsive design and consists of the patient can create a medical appointment, users have several levels of authorization.',
+      'This application has a responsive design and consists of ecommerce for a restaurant, users have various levels of authorization and payment platform.',
   },
   {
     iconUrl: snapgram,
@@ -258,8 +258,8 @@ export const projects = [
     video: 'https://www.youtube.com/embed/nZfKACwo0fk?si=CZmHAQWKVeFeJY1W',
     description:
       'This classic 2D arcade game puts players in control of a dog tasked with collecting all the bones while avoiding enemy attacks. Despite its simple premise, the game offers a challenging and rewarding experience that becomes increasingly difficult as players progress.',
-    link: 'https://jhonshua.github.io/juego-jascript/',
-    code: 'https://github.com/jhonshua/juego-jascript',
+    link: 'https://jhonshua.github.io/juego-js/',
+    code: 'https://github.com/jhonshua/juego-js',
   },
   {
     iconUrl: summiz,
@@ -269,6 +269,8 @@ export const projects = [
     description:
       'This chat application was developed using the MERN stack (MongoDB, Express, React, Node.js). It uses JWT (JSON Web Tokens) for authentication and WebSockets for real-time communication. The app allows users to register and create an account. Once a user is authenticated, they can send and receive messages from other users in real time.',
     link: 'https://front-websockets.vercel.app/',
-    code: 'https://github.com/jhonshua/front---Websockets-',
   },
 ]
+
+
+
