@@ -283,4 +283,13 @@ export const projects = [
       'This chat application was developed using the MERN stack (MongoDB, Express, React, Node.js). It uses JWT (JSON Web Tokens) for authentication and WebSockets for real-time communication. The app allows users to register and create an account. Once a user is authenticated, they can send and receive messages from other users in real time.',
     link: 'https://front-websockets.vercel.app/',
   },
+  {
+    iconUrl: summiz,
+    theme: 'btn-back-yellow',
+    name: 'Developer game Unity',
+    video:
+      'https://www.youtube.com/embed/A5vl6lAgK8o?si=ZtMm5x-7aUN0UY8z&amp;controls=0',
+    description:
+      'This free kit from Unity Technologies is a great resource for beginners who want to learn the basics of 3D game development in Unity...',
+  },
 ]
