@@ -218,16 +218,18 @@ export const projects = [
     iconUrl: pricewise,
     theme: 'btn-back-red',
     name: 'MERN administrative application"Sitam"',
-    video: "https://www.youtube.com/embed/ME6o9UVPc3U?si=mhga8-jGxr41GwNn&amp;controls=0",
+    video:
+      'https://www.youtube.com/embed/ME6o9UVPc3U?si=mhga8-jGxr41GwNn&amp;controls=0',
     description:
       'In this project we cover the entire development cycle, from front-end (client side) to backend (server side). A scalable and documented project, always taking care of correct practices.',
-    link: 'https://admin.sitamm.com/login'
+    link: 'https://admin.sitamm.com/login',
   },
   {
     iconUrl: car,
     theme: 'btn-back-blue',
     name: 'MERN administrative application"Dentalink"',
-    video: "https://www.youtube.com/embed/eljjWY_OKPs?si=dT7F_T_d2IFBHJxV&amp;controls=0",
+    video:
+      'https://www.youtube.com/embed/eljjWY_OKPs?si=dT7F_T_d2IFBHJxV&amp;controls=0',
     description:
       'We use JWT for user passwords, we also take care of the responsive design and use several microservices.',
     link: 'https://frontend-odontologia.vercel.app',
@@ -236,7 +238,8 @@ export const projects = [
     iconUrl: car,
     theme: 'btn-back-blue',
     name: 'Pasta Restaurante Italiano ecommerce',
-    video: "https://www.youtube.com/embed/FhzojXpYr_g?si=P1dwfJhxNlu3LkGa&amp;controls=0",
+    video:
+      'https://www.youtube.com/embed/FhzojXpYr_g?si=P1dwfJhxNlu3LkGa&amp;controls=0',
     link: 'https://www.alfredos.es/',
     description:
       'This application has a responsive design and consists of ecommerce for a restaurant, users have various levels of authorization and payment platform.',
@@ -250,6 +253,16 @@ export const projects = [
       'In this project, we will learn how to create a hand sign detector. We will use American Sign Language as an example. This project will include both detection and classification. And yes we will use our own data to train the model.',
     certificate:
       'https://courses.opencv.org/certificates/19788eab46504361b73fc1d7d1a90425',
+  },
+  {
+    iconUrl: car,
+    theme: 'btn-back-blue',
+    name: 'GM laboratorios clinico ecommerce',
+    video:
+      'https://www.youtube.com/embed/WGGOkVUFcms?si=R82FPZ_UZaEKLjgt&amp;controls=0 ',
+    link: 'https://www.gmlaboratorios.com/',
+    description:
+      'WordPress website for a clinical laboratory to attract new customers, increase the loyalty of existing customers and improve the image of the laboratory.',
   },
   {
     iconUrl: estate,
@@ -271,6 +284,3 @@ export const projects = [
     link: 'https://front-websockets.vercel.app/',
   },
 ]
-
-
-
