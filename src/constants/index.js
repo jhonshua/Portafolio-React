@@ -281,7 +281,7 @@ export const projects = [
     video: 'https://www.youtube.com/embed/HldH7_533hk?si=M2AfyiSaPGZ5jRZ-',
     description:
       'This chat application was developed using the MERN stack (MongoDB, Express, React, Node.js). It uses JWT (JSON Web Tokens) for authentication and WebSockets for real-time communication. The app allows users to register and create an account. Once a user is authenticated, they can send and receive messages from other users in real time.',
-    link: 'https://front-websockets.vercel.app/',
+    link: 'https://front-websockets.vercel.app',
   },
   {
     iconUrl: summiz,
