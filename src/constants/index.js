@@ -1,4 +1,4 @@
-import { codeline, Hybrido, cripto, tesla, mineria } from '../assets/images'
+import { codeline, Hybrido, cripto, mineria, xatoxi } from '../assets/images'
 import {
   car,
   contact,
@@ -26,9 +26,10 @@ import {
   typescript,
   python,
   figma,
-  php,
+  angular,
   arduino,
   electronica,
+
 } from '../assets/icons'
 
 export const skills = [
@@ -123,8 +124,8 @@ export const skills = [
     type: 'Frontend',
   },
   {
-    imageUrl: php,
-    name: 'php',
+    imageUrl: angular,
+    name: 'angular',
     type: 'Frontend',
   },
   {
@@ -140,31 +141,28 @@ export const skills = [
 ]
 
 export const experiences = [
+
   {
-    title: 'It Engineer',
-    company_name: 'Mineria Texas Colombia',
-    icon: mineria,
-    iconBg: '#407831',
-    date: 'March 2018 - April 2019',
+    title: 'Desarrollador Frontend',
+    company_name: 'Xatoxi',
+    icon: xatoxi,
+    iconBg: '#ffff',
+    date: 'April 2024 - Present',
     points: [
-      'Developed and maintained static web pages using HTML, CSS, and JavaScript.',
-      'Managed relational databases using SQL Server.',
-      'Assisted employees with LAN and WAN network issues.',
-      'Provided technical support to employees.',
-      'Followed project schedules and met deadlines',
+      'Use JavaScript in its most basic and original form, without add any external libraries or framework, such as jQuery, React or Angular to develop frontend.'
     ],
   },
   {
-    title: 'Electronic Engineer',
-    company_name: 'Crypto BTC Venezuela',
-    icon: cripto,
-    iconBg: '#ffc027',
-    date: 'Jan 2020 - Feb 2022',
+    title: 'Full stack Developer',
+    company_name: 'Code Line',
+    icon: codeline,
+    iconBg: '#5270fd',
+    date: 'Sep 2023 - Mar 2024',
     points: [
-      'Managed databases and designed web pages.',
-      'Coordinated employees and proposed new business ventures.',
-      'epaired electronic cards and provided maintenance to electronic equipment for various clients, including a major mining company and a government agency.',
-      'Managed databases and designed web pages that increased user engagement by 20% and improved customer satisfaction by 15%.',
+      'Developing and maintaining web applications using React.js and other related technologies.',
+      'Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.',
+      'Implementing responsive design and ensuring cross-browser compatibility.',
+      'Participating in code reviews and providing constructive feedback to other developers.',
     ],
   },
   {
@@ -181,18 +179,32 @@ export const experiences = [
     ],
   },
   {
-    title: 'Full stack Developer',
-    company_name: 'Code Line',
-    icon: codeline,
-    iconBg: '#5270fd',
-    date: 'Sep 2023 - Present',
+    title: 'Electronic Engineer',
+    company_name: 'Crypto BTC Venezuela',
+    icon: cripto,
+    iconBg: '#ffc027',
+    date: 'Jan 2020 - Feb 2022',
     points: [
-      'Developing and maintaining web applications using React.js and other related technologies.',
-      'Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.',
-      'Implementing responsive design and ensuring cross-browser compatibility.',
-      'Participating in code reviews and providing constructive feedback to other developers.',
+      'Managed databases and designed web pages.',
+      'Coordinated employees and proposed new business ventures.',
+      'epaired electronic cards and provided maintenance to electronic equipment for various clients, including a major mining company and a government agency.',
+      'Managed databases and designed web pages that increased user engagement by 20% and improved customer satisfaction by 15%.',
     ],
   },
+  {
+    title: 'It Engineer',
+    company_name: 'Mineria Texas Colombia',
+    icon: mineria,
+    iconBg: '#407831',
+    date: 'March 2018 - April 2019',
+    points: [
+      'Developed and maintained static web pages using HTML, CSS, and JavaScript.',
+      'Managed relational databases using SQL Server.',
+      'Assisted employees with LAN and WAN network issues.',
+      'Provided technical support to employees.',
+      'Followed project schedules and met deadlines',
+    ],
+  }
 ]
 
 export const socialLinks = [
@@ -215,6 +227,17 @@ export const socialLinks = [
 
 export const projects = [
   {
+    iconUrl: threads,
+    theme: 'btn-back-blue',
+    name: 'Exchange Rates API - Real-Time, & Historical Currency"',
+    video:
+      'https://www.youtube.com/embed/m1Eco1FY_Yw?si=PMp7FJ9aMw-Akn0F',
+    description:
+      'Model of an API that gives information on the price of several currencies on the day, this information is obtained in the backend by scraping, the api is built with express js and in Angular 18 front.',
+    link: 'https://admin.sitamm.com/login',
+    code: 'https://github.com/jhonshua/juego-js',
+  },
+  {
     iconUrl: pricewise,
     theme: 'btn-back-red',
     name: 'MERN administrative application"Sitam"',
@@ -223,6 +246,7 @@ export const projects = [
     description:
       'In this project we cover the entire development cycle, from front-end (client side) to backend (server side). A scalable and documented project, always taking care of correct practices.',
     link: 'https://admin.sitamm.com/login',
+
   },
   {
     iconUrl: car,

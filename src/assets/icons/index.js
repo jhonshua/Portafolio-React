@@ -28,7 +28,7 @@ import soundon from './soundon.png'
 import soundoff from './soundoff.png'
 import python from './python.png'
 import figma from './figma.png'
-import php from './php2.png'
+import angular from './angular.png'
 import arduino from './arduino.png'
 import electronica from './ingeneria.png'
 
@@ -63,7 +63,7 @@ export {
   soundoff,
   python,
   figma,
-  php,
+  angular,
   arduino,
   electronica,
 }
