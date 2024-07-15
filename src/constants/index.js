@@ -234,8 +234,8 @@ export const projects = [
       'https://www.youtube.com/embed/m1Eco1FY_Yw?si=PMp7FJ9aMw-Akn0F',
     description:
       'Model of an API that gives information on the price of several currencies on the day, this information is obtained in the backend by scraping, the api is built with express js and in Angular 18 front.',
-    link: 'https://admin.sitamm.com/login',
-    code: 'https://github.com/jhonshua/juego-js',
+    link: 'https://exchange-rates-angular-ten.vercel.app/',
+    code: 'https://github.com/jhonshua/Exchange-Rates-API-Express',
   },
   {
     iconUrl: pricewise,
