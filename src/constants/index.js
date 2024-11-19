@@ -281,12 +281,11 @@ export const projects = [
   {
     iconUrl: car,
     theme: 'btn-back-blue',
-    name: 'GM laboratorios clinico ecommerce',
-    video:
-      'https://www.youtube.com/embed/WGGOkVUFcms?si=R82FPZ_UZaEKLjgt&amp;controls=0 ',
-    link: 'https://www.gmlaboratorios.com/',
+    name: 'zurita laboratorios clinico ecommerce',
+    video:"https://www.youtube.com/embed/cb6whljdtUA?si=liRWP4fngMKuXSUx",
+    link: 'https://zuritalaboratorios.com/',
     description:
-      'WordPress website for a clinical laboratory to attract new customers, increase the loyalty of existing customers and improve the image of the laboratory.',
+      'React website for a clinical laboratory to attract new customers, increase the loyalty of existing customers and improve the image of the laboratory.',
   },
   {
     iconUrl: estate,
@@ -295,8 +294,16 @@ export const projects = [
     video: 'https://www.youtube.com/embed/nZfKACwo0fk?si=CZmHAQWKVeFeJY1W',
     description:
       'This classic 2D arcade game puts players in control of a dog tasked with collecting all the bones while avoiding enemy attacks. Despite its simple premise, the game offers a challenging and rewarding experience that becomes increasingly difficult as players progress.',
-    link: 'https://jhonshua.github.io/juego-js/',
+    link: 'https://jhonshua.github.io/Juego-Js/',
     code: 'https://github.com/jhonshua/juego-js',
+  },
+  {
+    iconUrl: estate,
+    theme: 'btn-back-black',
+    name: 'Information page',
+    video: 'https://www.youtube.com/embed/4LzlLAxoDLA?si=Cr3zPCrUnSUaZMAd',
+    description:'landing page in js html and css, this commercial page fulfills the function of providing information to the doctor patients.',
+    link: 'https://laveroftalmologo.com/',
   },
   {
     iconUrl: summiz,
@@ -311,8 +318,7 @@ export const projects = [
     iconUrl: summiz,
     theme: 'btn-back-yellow',
     name: 'Developer game Unity',
-    video:
-      'https://www.youtube.com/embed/A5vl6lAgK8o?si=ZtMm5x-7aUN0UY8z&amp;controls=0',
+    video: 'https://www.youtube.com/embed/A5vl6lAgK8o?si=ZtMm5x-7aUN0UY8z&amp;controls=0',
     description:
       'This free kit from Unity Technologies is a great resource for beginners who want to learn the basics of 3D game development in Unity...',
   },
