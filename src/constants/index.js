@@ -256,7 +256,7 @@ export const projects = [
       'https://www.youtube.com/embed/eljjWY_OKPs?si=dT7F_T_d2IFBHJxV&amp;controls=0',
     description:
       'We use JWT for user passwords, we also take care of the responsive design and use several microservices.',
-    link: 'https://frontend-odontologia.vercel.app',
+    link: 'https://frontend-dent-control.vercel.app/',
   },
   {
     iconUrl: car,
