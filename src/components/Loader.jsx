@@ -1,13 +1,32 @@
 import { Html } from "@react-three/drei";
 
-const Loader = () => {
-  return (
-    <Html>
-      <div className='flex justify-center items-center'>
-        <div className='w-20 h-20 border-2 border-opacity-20 border-blue-500 border-t-blue-500 rounded-full animate-spin'></div>
-      </div>
-    </Html>
-  );
+const Loader = ({ size = 50, color = '#29ABE2', strokeWidth = 4 }) => {
+    const loaderStyle = {
+        width: size,
+        height: size,
+        borderWidth: strokeWidth,
+        borderStyle: 'solid',
+        borderColor: '#eee',
+        borderTopColor: color,
+        borderRadius: '50%',
+        animation: 'spin 1s linear infinite',
+    };
+
+    const containerStyle = {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        height: '100%',
+    };
+
+    return (
+        <Html center>
+            <div style={containerStyle}>
+                <div style={loaderStyle} aria-label="Cargando..."></div>
+            </div>
+        </Html>
+    );
 };
 
 export default Loader;
