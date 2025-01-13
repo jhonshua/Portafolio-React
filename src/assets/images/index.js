@@ -10,6 +10,7 @@ import Hybrido from './Hybrido.png'
 import mineria from './mineria.png'
 import cripto from './cripto.png'
 import xatoxi from './Xatoxi.png'
+import chatsac from './chatsac.png'
 
 export {
   house,
@@ -23,5 +24,6 @@ export {
   Hybrido,
   mineria,
   cripto,
-  xatoxi
+  xatoxi,
+  chatsac
 }

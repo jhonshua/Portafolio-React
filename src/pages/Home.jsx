@@ -13,6 +13,8 @@ const Home = () => {
 
   const [currentStage, setCurrentStage] = useState(1)
   const [isRotating, setIsRotating] = useState(false)
+  const [isRotatingPlane, setIsRotatingPlane] = useState(true)
+  const [isRotatingSki, setIsRotatingski] = useState(true)
   const [isPlayingMusic, setIsPlayingMusic] = useState(true)
 
   useEffect(() => {
@@ -85,7 +87,7 @@ const Home = () => {
           />
 
           <Bird />
-          <Sky isRotating={isRotating} />
+          <Sky isRotating={isRotatingSki} />
           <Island
             isRotating={isRotating}
             setIsRotating={setIsRotating}
@@ -95,7 +97,7 @@ const Home = () => {
             scale={islandScale}
           />
           <Plane
-            isRotating={isRotating}
+            isRotating={isRotatingPlane}
             position={biplanePosition}
             rotation={[0, 20.1, 0]}
             scale={biplaneScale}

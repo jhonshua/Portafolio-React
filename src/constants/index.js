@@ -1,4 +1,4 @@
-import { codeline, Hybrido, cripto, mineria, xatoxi } from '../assets/images'
+import { codeline, Hybrido, cripto, mineria, xatoxi, chatsac } from '../assets/images'
 import {
   car,
   contact,
@@ -141,49 +141,66 @@ export const skills = [
 ]
 
 export const experiences = [
+ 
+
+
 
   {
-    title: 'Desarrollador Frontend',
+    title: 'Full stack Developer',
+    company_name: ' ChatSac',
+    icon: chatsac,
+    iconBg: '#ffff',
+    date: 'October 2024 - Present',
+    points: [
+      'Experience in script development and task automation using JavaScript and Python. Mastery of tools such as Selenium, Puppeteer, BeautifulSoup and frameworks such as Node.js for the creation of efficient and scalable solutions.'
+    ],
+    link:'https://chatsac.com/'
+  },
+  {
+    title: 'Developer Frontend',
     company_name: 'Xatoxi',
     icon: xatoxi,
     iconBg: '#ffff',
-    date: 'April 2024 - Present',
+    date: 'March 2024 - September 2024',
     points: [
       'Use JavaScript in its most basic and original form, without add any external libraries or framework, such as jQuery, React or Angular to develop frontend.'
     ],
+     link:'https://www.xatoxi.app'
   },
   {
     title: 'Full stack Developer',
     company_name: 'Code Line',
     icon: codeline,
     iconBg: '#5270fd',
-    date: 'Sep 2023 - Mar 2024',
+    date: 'September 2023 - March 2024',
     points: [
       'Developing and maintaining web applications using React.js and other related technologies.',
       'Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.',
       'Implementing responsive design and ensuring cross-browser compatibility.',
       'Participating in code reviews and providing constructive feedback to other developers.',
     ],
+      link:'https://codeline.lat/'
   },
   {
     title: 'Full stack Developer',
     company_name: 'hybrido.studio',
     icon: Hybrido,
     iconBg: '#145f98',
-    date: 'Feb 2022 - Aug 2023',
+    date: 'February 2022 - September 2023',
     points: [
       'Developing and maintaining web applications using React.js and other related technologies.',
       'Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.',
       'Implementing responsive design and ensuring cross-browser compatibility.',
       'Participating in code reviews and providing constructive feedback to other developers.',
     ],
+   link:'https://hybrido.studio/'
   },
   {
     title: 'Electronic Engineer',
     company_name: 'Crypto BTC Venezuela',
     icon: cripto,
     iconBg: '#ffc027',
-    date: 'Jan 2020 - Feb 2022',
+    date: 'January 2020 - February 2022',
     points: [
       'Managed databases and designed web pages.',
       'Coordinated employees and proposed new business ventures.',

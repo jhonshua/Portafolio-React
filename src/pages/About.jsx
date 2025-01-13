@@ -98,6 +98,13 @@ const About = () => {
                     style={{ margin: 0 }}>
                     {experience.company_name}
                   </p>
+                  <a
+                    className='text-black-500 font-medium text-base'
+                    style={{ margin: 0 , color: 'blue'}}
+                    href={experience.link}
+                    target="_blank" >
+                    {experience.link}
+                  </a>
                 </div>
 
                 <ul className='my-5 list-disc ml-5 space-y-2'>
