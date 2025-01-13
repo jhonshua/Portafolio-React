@@ -15,7 +15,7 @@ const Home = () => {
   const [isRotating, setIsRotating] = useState(false)
   const [isRotatingPlane, setIsRotatingPlane] = useState(true)
   const [isRotatingSki, setIsRotatingski] = useState(true)
-  const [isPlayingMusic, setIsPlayingMusic] = useState(true)
+  const [isPlayingMusic, setIsPlayingMusic] = useState(false)
 
   useEffect(() => {
     if (isPlayingMusic) {

@@ -15,7 +15,7 @@ const Dragons = () => {
   audioRef.current.loop = true;
 
   const ref = useRef();
-  const [isPlayingMusic, setIsPlayingMusic] = useState(true);
+  const [isPlayingMusic, setIsPlayingMusic] = useState(false);
   const [isLoading, setIsLoading] = useState(true); // Add state for loading
 
   useEffect(() => {
