@@ -7,6 +7,7 @@ import { Dragon, Sky, Nombre } from "../models";
 import sakura from "../assets/sakura.mp3";
 import { soundoff, soundon } from "../assets/icons";
 import loadingGif from "../assets/images/loading.gif"
+import {  Loader } from '../components'
 
 const Dragons = () => {
   const audioRef = useRef(new Audio(sakura));
@@ -55,7 +56,7 @@ const Dragons = () => {
         className={`w-full h-screen bg-transparent `}
         camera={{ fov: 75, near: 0.1, far: -500, position: [0, 0, 5] }}
       >
-        <Suspense fallback={null}>
+        <Suspense fallback={<Loader />}>
           <directionalLight position={[1, 1, 1]} intensity={2} />
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 5, 10]} intensity={2} />
