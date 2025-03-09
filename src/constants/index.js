@@ -281,7 +281,7 @@ export const projects = [
     name: 'Pasta Restaurante Italiano ecommerce',
     video:
       'https://www.youtube.com/embed/FhzojXpYr_g?si=P1dwfJhxNlu3LkGa&amp;controls=0',
-    link: 'https://www.alfredos.es/',
+    link: 'https://alfredos.last.shop/es',
     description:
       'This application has a responsive design and consists of ecommerce for a restaurant, users have various levels of authorization and payment platform.',
   },
