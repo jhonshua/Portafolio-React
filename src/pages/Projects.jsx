@@ -30,20 +30,34 @@ const Projects = () => {
               <div className='btn-front rounded-xl flex justify-center items-center'>
                 <img
                   src={project.iconUrl}
-                  alt='threads'
+                  alt='project icon'
                   className='w-1/2 h-1/2 object-contain'
                 />{' '}
               </div>{' '}
             </div>{' '}
             <br />
-            <iframe
-              width='340'
-              height='215'
-              src={project.video}
-              title='YouTube video player'
-              frameborder='0'
-              allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-              allowfullscreen></iframe>
+            {/* Lógica condicional para mostrar video o imagen */}
+            {project.video ? (
+              <iframe
+                width='340'
+                height='215'
+                src={project.video}
+                title='YouTube video player'
+                frameBorder='0'
+                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+                allowFullScreen>
+              </iframe>
+            ) : project.img ? (
+              <img
+                src={project.img}
+                alt={`Imagen del proyecto ${project.name}`}
+                className='w-[340px] h-[215px] object-cover rounded'
+              />
+            ) : (
+              <div className='w-[340px] h-[215px] flex justify-center items-center bg-gray-200 text-gray-500 rounded'>
+                No hay contenido multimedia disponible.
+              </div>
+            )}
             <div className='mt-5 flex flex-col'>
               <h4 className='text-2xl font-poppins font-semibold'>
                 {project.name}

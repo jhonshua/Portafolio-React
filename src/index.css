@@ -147,6 +147,10 @@ form {
   background: linear-gradient(135deg, #0a1647 -20%, #e4e7e4 120%);
 }
 
+.block-container .btn-back-green {
+  background: linear-gradient(135deg, #415296 -20%, #659165 120%);
+}
+
 .block-container .btn-front {
   position: absolute;
   inset: 0;

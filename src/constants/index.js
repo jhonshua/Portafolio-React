@@ -23,12 +23,19 @@ import {
   summiz,
   tailwindcss,
   threads,
+  home,
   typescript,
   python,
+  imgPisopro,
   figma,
   angular,
   arduino,
   electronica,
+  phone,
+  game,
+  hamburger,
+  snap360,
+  pisopro
 
 } from '../assets/icons'
 
@@ -141,16 +148,35 @@ export const skills = [
 ]
 
 export const experiences = [
- 
+   {
+    title: 'Full stack Developer',
+    company_name: ' Snap360',
+    icon: snap360,
+    iconBg: '#F54927',
+    date: 'Feb 2025 - Currently',
+    points: [
+      'I was actively involved in the mobile development of the app using Flutter and Firebase. I was also responsible for the front-end development of the web platform, creating responsive designs and ensuring an optimized user experience with Next.js and TypeScript.'
+    ],
+    link:'https://snap360app.com/'
+  },
 
-
-
+  {
+    title: 'Full stack Developer',
+    company_name: ' Pisopro',
+    icon: pisopro,
+    iconBg: '#1D4B87',
+    date: 'Feb 2025 - Currently',
+    points: [
+      'Responsible for developing efficient and scalable solutions. My role includes front-end development with TypeScript (Next.js) and back-end development with Python (Django). I also have worked with tools such as Node, React, SQL, and S3, and managed application deployment on DigitalOcean using Docker and Kubernetes.'
+    ],
+    link:'https://pisopro.com/'
+  },
   {
     title: 'Full stack Developer',
     company_name: ' ChatSac',
     icon: chatsac,
     iconBg: '#ffff',
-    date: 'October 2024 - Present',
+    date: 'October 2024 - January 2025',
     points: [
       'Experience in script development and task automation using JavaScript and Python. Mastery of tools such as Selenium, Puppeteer, BeautifulSoup and frameworks such as Node.js for the creation of efficient and scalable solutions.'
     ],
@@ -243,6 +269,24 @@ export const socialLinks = [
 ]
 
 export const projects = [
+    {
+    iconUrl: phone,
+    theme: 'btn-back-orange',
+    name: 'The most complete app for photo booths and 360° booths',
+    description:
+      'Snap360 allows you to upload your own images, designs, and sounds. To do this, you will need to download the images music, or frames directly to your mobile device. As a new feature, we are developing a feature that allows you to integrate image and music banks directly into the app.',
+    video:'https://www.youtube.com/embed/Do1kYIhTUH8?si=6EpHyWOl-tlmPFsu',
+    link: 'https://snap360app.com/',  
+  },
+  {
+    iconUrl: home,
+    theme: 'btn-back-blue',
+    name: 'pisopro is designed for both individual owners and real estate agencies',
+    description:
+      'Pisopro is a digital platform for landlords and agencies to help them manage their rental properties It digitizes finances, contracts, and communication with tenants, Saving time with automations and smart alerts More control, fewer complications — all in one easy-to-use platform',
+    link: 'https://pisopro.com/',
+    img: imgPisopro,
+  },
   {
     iconUrl: threads,
     theme: 'btn-back-blue',
@@ -276,8 +320,8 @@ export const projects = [
     link: 'https://frontend-dent-control.vercel.app/',
   },
   {
-    iconUrl: car,
-    theme: 'btn-back-blue',
+    iconUrl: hamburger,
+    theme: 'btn-back-green',
     name: 'Pasta Restaurante Italiano ecommerce',
     video:
       'https://www.youtube.com/embed/FhzojXpYr_g?si=P1dwfJhxNlu3LkGa&amp;controls=0',
@@ -315,14 +359,6 @@ export const projects = [
     code: 'https://github.com/jhonshua/juego-js',
   },
   {
-    iconUrl: estate,
-    theme: 'btn-back-black',
-    name: 'Information page',
-    video: 'https://www.youtube.com/embed/4LzlLAxoDLA?si=Cr3zPCrUnSUaZMAd',
-    description:'landing page in js html and css, this commercial page fulfills the function of providing information to the doctor patients.',
-    link: 'https://laveroftalmologo.com/',
-  },
-  {
     iconUrl: summiz,
     theme: 'btn-back-yellow',
     name: 'MERN Chat Application with JWT and WebSockets',
@@ -332,7 +368,7 @@ export const projects = [
     link: 'https://front-websockets.vercel.app',
   },
   {
-    iconUrl: summiz,
+    iconUrl: game,
     theme: 'btn-back-yellow',
     name: 'Developer game Unity',
     video: 'https://www.youtube.com/embed/A5vl6lAgK8o?si=ZtMm5x-7aUN0UY8z&amp;controls=0',

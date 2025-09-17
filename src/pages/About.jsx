@@ -29,12 +29,7 @@ const About = () => {
 
       <div className='mt-5 flex flex-col gap-3 text-slate-500'>
         <p>
-          A versatile and experienced full-stack developer with over three year
-          of expertise in crafting seamless front-end and back-end solutions.
-          Proficient in a diverse range of technologies, including React JS,
-          Expo, Express JS, PHP, Laravel, Photoshop, Figma, Unity, and Phaser,
-          enabling the creation of dynamic and engaging websites and mobile
-          applications.
+         A versatile full-stack developer with extensive experience in creating comprehensive and scalable solutions. I specialize in front-end development with technologies such as React, Next.js, and TypeScript, and in back-end development with Python (Django), PHP (Laravel), and Node.js (Express). I have a strong command of DevOps and cloud platforms, including Docker, Kubernetes, AWS, and DigitalOcean, which allows me to manage efficient deployments. Additionally, I have experience in mobile application development with Flutter and in integrating systems using REST APIs.
         </p>
       </div>
 
@@ -61,9 +56,7 @@ const About = () => {
         <h3 className='subhead-text'>Work Experience.</h3>
         <div className='mt-5 flex flex-col gap-3 text-slate-500'>
           <p>
-            I have worked with a variety of companies, improving my skills and
-            associating with intelligent people, which has allowed me to grow
-            professionally. Here is the summary:
+            My experience spans a variety of companies where I have thrived in collaborative environments. I've had the privilege of working alongside talented professionals, contributing my skills to tackle complex projects and deliver high-impact solutions:
           </p>
         </div>
 

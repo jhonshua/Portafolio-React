@@ -22,19 +22,28 @@ import pricewise from './pricewise.svg'
 import snapgram from './snapgram.svg'
 import summiz from './summiz.svg'
 import threads from './threads.svg'
+import home from './home.svg'
 import arrow from './arrow.svg'
 import contact from './contact.svg'
 import soundon from './soundon.png'
 import soundoff from './soundoff.png'
 import python from './python.png'
+import imgPisopro from './pisoproenaccion1.webp'
+import phone from './phone.svg'
 import figma from './figma.png'
 import angular from './angular.png'
 import arduino from './arduino.png'
 import electronica from './ingeneria.png'
+import game from './game.svg'
+import hamburger from './hamburger.svg'
+import snap360 from '../images/snap360.png'
+import pisopro from './pisopro.png'
 
 export {
+  hamburger,
   css,
   express,
+  home,
   git,
   github,
   html,
@@ -66,4 +75,9 @@ export {
   angular,
   arduino,
   electronica,
+  imgPisopro,
+  phone,
+  game,
+  snap360 ,
+  pisopro
 }
