@@ -19,6 +19,7 @@ const Dragons = () => {
   const [deviceOrientation, setDeviceOrientation] = useState({ alpha: 0, beta: 0, gamma: 0 })
   const [isMobile, setIsMobile] = useState(false)
   const [gyroscopeEnabled, setGyroscopeEnabled] = useState(false)
+  const [sensitivity, setSensitivity] = useState(0.08) // Estado para sensibilidad ajustable
 
   // Detectar si es dispositivo móvil
   useEffect(() => {
@@ -113,7 +114,6 @@ const Dragons = () => {
     }
 
     // Convertir grados a radianes y ajustar sensibilidad
-    const sensitivity = 0.02
     const rotationX = (deviceOrientation.beta * Math.PI / 180) * sensitivity
     const rotationY = (deviceOrientation.gamma * Math.PI / 180) * sensitivity
     const rotationZ = (deviceOrientation.alpha * Math.PI / 180) * sensitivity * 0.5
