@@ -29,8 +29,8 @@ const Dragons = () => {
   return (
     <section className='w-full h-screen relative'>
       <Link to='/home'>
-        <div className='absolute top-28 left-0 right-0 z-0 flex items-center justify-center'>
-          <img src={ladpage} alt=' ladpage' className='max-w-[90%] h-auto' />
+        <div className='absolute top-28 left-0 right-0 z-10 flex items-center justify-center'>
+          <img src={ladpage} alt=' ladpage' />
         </div>
       </Link>
 
