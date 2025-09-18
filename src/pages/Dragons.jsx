@@ -14,88 +14,7 @@ const Dragons = () => {
   audioRef.current.loop = true
 
   const ref = useRef()
-  const dragonRef = useRef()
   const [isPlayingMusic, setIsPlayingMusic] = useState(false)
-  const [deviceOrientation, setDeviceOrientation] = useState({ alpha: 0, beta: 0, gamma: 0 })
-  const [isMobile, setIsMobile] = useState(false)
-  const [gyroscopeEnabled, setGyroscopeEnabled] = useState(false)
-  const [sensitivity, setSensitivity] = useState(0.08) // Estado para sensibilidad ajustable (más alta por defecto)
-
-  // Detectar si es dispositivo móvil
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768)
-    }
-    
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
-
-  // Manejar orientación del dispositivo
-  useEffect(() => {
-    if (!isMobile) return
-
-    const handleOrientation = (event) => {
-      if (gyroscopeEnabled) {
-        setDeviceOrientation({
-          alpha: event.alpha || 0, // Rotación Z (0-360)
-          beta: event.beta || 0,   // Rotación X (-180 a 180)
-          gamma: event.gamma || 0  // Rotación Y (-90 a 90)
-        })
-      }
-    }
-
-    if (typeof DeviceOrientationEvent !== 'undefined') {
-      // Para iOS 13+ necesitamos pedir permisos
-      if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-        // iOS
-        const requestPermission = async () => {
-          try {
-            const permission = await DeviceOrientationEvent.requestPermission()
-            if (permission === 'granted') {
-              window.addEventListener('deviceorientation', handleOrientation)
-              setGyroscopeEnabled(true)
-            }
-          } catch (error) {
-            console.log('Error requesting device orientation permission:', error)
-          }
-        }
-        
-        if (gyroscopeEnabled) {
-          requestPermission()
-        }
-      } else {
-        // Android y otros
-        window.addEventListener('deviceorientation', handleOrientation)
-        setGyroscopeEnabled(true)
-      }
-    }
-
-    return () => {
-      window.removeEventListener('deviceorientation', handleOrientation)
-    }
-  }, [isMobile, gyroscopeEnabled])
-
-  // Función para activar giroscopio (especialmente para iOS)
-  const enableGyroscope = async () => {
-    if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
-      try {
-        const permission = await DeviceOrientationEvent.requestPermission()
-        if (permission === 'granted') {
-          setGyroscopeEnabled(true)
-        } else {
-          alert('Permiso de giroscopio denegado')
-        }
-      } catch (error) {
-        console.log('Error:', error)
-        alert('Error al solicitar permisos de giroscopio')
-      }
-    } else {
-      setGyroscopeEnabled(true)
-    }
-  }
 
   useEffect(() => {
     if (isPlayingMusic) {
@@ -107,20 +26,6 @@ const Dragons = () => {
     }
   }, [isPlayingMusic])
 
-  // Convertir orientación del dispositivo a rotación del modelo
-  const getDragonRotation = () => {
-    if (!isMobile || !gyroscopeEnabled) {
-      return [0, 0, 0]
-    }
-
-    // Convertir grados a radianes y ajustar sensibilidad
-    const rotationX = (deviceOrientation.beta * Math.PI / 180) * sensitivity
-    const rotationY = (deviceOrientation.gamma * Math.PI / 180) * sensitivity
-    const rotationZ = (deviceOrientation.alpha * Math.PI / 180) * sensitivity * 0.5
-
-    return [rotationX, rotationY, rotationZ]
-  }
-
   return (
     <section className='w-full h-screen relative'>
       <Link to='/home'>
@@ -128,26 +33,6 @@ const Dragons = () => {
           <img src={ladpage} alt=' ladpage' className='max-w-[90%] h-auto' />
         </div>
       </Link>
-
-      {/* Botón para activar giroscopio en móviles */}
-      {isMobile && !gyroscopeEnabled && (
-        <div className='absolute top-4 right-4 z-20'>
-          <button
-            onClick={enableGyroscope}
-            className='bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-semibold shadow-lg'>
-            📱 Activar Giroscopio
-          </button>
-        </div>
-      )}
-
-      {/* Indicador de giroscopio activo */}
-      {isMobile && gyroscopeEnabled && (
-        <div className='absolute top-4 right-4 z-20'>
-          <div className='bg-green-500 text-white px-3 py-1 rounded-full text-xs font-semibold'>
-            📱 Giroscopio ON
-          </div>
-        </div>
-      )}
 
       <Canvas
         className={`w-full h-screen bg-transparent `}
@@ -168,12 +53,7 @@ const Dragons = () => {
             intensity={0.5}
             environment='night'></Stage>
 
-          <Dragon 
-            ref={dragonRef}
-            position={[0, -10, -18]} 
-            scale={[0.2, 0.2, 0.2]} 
-            rotation={getDragonRotation()}
-          />
+          <Dragon position={[0, -10, -18]} scale={[0.2, 0.2, 0.2]} />
           <Sky scale={[500, 500, 500]} isRotating={true} />
           <Nombre position={[0, 10, -18]} scale={[0.2, 0.2, 0.2]} />
         </Suspense>
@@ -183,7 +63,6 @@ const Dragons = () => {
           maxDistance={20}
           minPitch={-10}
           maxPitch={45}
-          enabled={!isMobile || !gyroscopeEnabled} // Deshabilitar controles manuales cuando el giroscopio está activo
         />
       </Canvas>
       <div className='absolute bottom-2 left-2'>
