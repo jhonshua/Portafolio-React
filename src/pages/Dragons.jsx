@@ -19,7 +19,7 @@ const Dragons = () => {
   const [deviceOrientation, setDeviceOrientation] = useState({ alpha: 0, beta: 0, gamma: 0 })
   const [isMobile, setIsMobile] = useState(false)
   const [gyroscopeEnabled, setGyroscopeEnabled] = useState(false)
-  const [sensitivity, setSensitivity] = useState(0.08) // Estado para sensibilidad ajustable
+  const [sensitivity, setSensitivity] = useState(0.08) // Estado para sensibilidad ajustable (más alta por defecto)
 
   // Detectar si es dispositivo móvil
   useEffect(() => {
