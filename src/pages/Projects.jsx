@@ -22,10 +22,10 @@ const Projects = () => {
         Your collaboration is highly valued!
       </p>
 
-      <div className='flex flex-wrap my-20 gap-16 btn-back '>
+      <div className='flex flex-wrap my-20 gap-16 justify-center btn-back '>
         {projects.map(project => (
-          <div className='lg:w-[400px] w-full' key={project.name}>
-            <div className='block-container w-12 h-12'>
+          <div className='lg:w-[400px] w-full max-w-[400px] mx-auto' key={project.name}>
+            <div className='block-container w-12 h-12 mx-auto'>
               <div className={`btn-back rounded-xl ${project.theme}`} />
               <div className='btn-front rounded-xl flex justify-center items-center'>
                 <img
@@ -36,28 +36,31 @@ const Projects = () => {
               </div>{' '}
             </div>{' '}
             <br />
-            {/* Lógica condicional para mostrar video o imagen */}
-            {project.video ? (
-              <iframe
-                width='340'
-                height='215'
-                src={project.video}
-                title='YouTube video player'
-                frameBorder='0'
-                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-                allowFullScreen>
-              </iframe>
-            ) : project.img ? (
-              <img
-                src={project.img}
-                alt={`Imagen del proyecto ${project.name}`}
-                className='w-[340px] h-[215px] object-cover rounded'
-              />
-            ) : (
-              <div className='w-[340px] h-[215px] flex justify-center items-center bg-gray-200 text-gray-500 rounded'>
-                No hay contenido multimedia disponible.
-              </div>
-            )}
+            {/* Contenedor responsive para videos e imágenes */}
+            <div className='w-full flex justify-center mb-4'>
+              {project.video ? (
+                <div className='relative w-full max-w-[400px] aspect-video'>
+                  <iframe
+                    className='absolute inset-0 w-full h-full rounded-lg shadow-md'
+                    src={project.video}
+                    title='YouTube video player'
+                    frameBorder='0'
+                    allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+                    allowFullScreen>
+                  </iframe>
+                </div>
+              ) : project.img ? (
+                <img
+                  src={project.img}
+                  alt={`Imagen del proyecto ${project.name}`}
+                  className='w-full max-w-[400px] h-auto aspect-video object-cover rounded-lg shadow-md'
+                />
+              ) : (
+                <div className='w-full max-w-[400px] aspect-video flex justify-center items-center bg-gray-200 text-gray-500 rounded-lg shadow-md'>
+                  <span className='text-center px-4'>No hay contenido multimedia disponible.</span>
+                </div>
+              )}
+            </div>
             <div className='mt-5 flex flex-col'>
               <h4 className='text-2xl font-poppins font-semibold'>
                 {project.name}
