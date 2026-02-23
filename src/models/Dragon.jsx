@@ -6,11 +6,56 @@ Source: https://sketchfab.com/3d-models/wrath-of-the-dragon-bda2c373806747a28812
 Title: Wrath of the Dragon
 */
 
-import React, { useRef } from 'react'
+import React from 'react'
 import { useGLTF } from '@react-three/drei'
+import { useFrame } from '@react-three/fiber'
 import scene from '../assets/3d/dragon.glb'
+
+const WING_FLAP_SPEED = 1.2
+const WING_FLAP_AMPLITUDE = 0.1
+const HEAD_MOVE_SPEED = 0.4
+const HEAD_MOVE_AMPLITUDE = 0.06
+
 export function Dragon(props) {
   const { nodes, materials } = useGLTF(scene)
+
+  useFrame(({ clock }) => {
+    const t = clock.elapsedTime * WING_FLAP_SPEED
+    const flap = Math.sin(t) * WING_FLAP_AMPLITUDE
+
+    const headT = clock.elapsedTime * HEAD_MOVE_SPEED
+    const headY = Math.sin(headT) * HEAD_MOVE_AMPLITUDE
+    const headX = Math.sin(headT * 0.7) * HEAD_MOVE_AMPLITUDE * 0.5
+
+    const skeleton = nodes.Dragon_0?.skeleton
+    if (!skeleton?.bones) return
+
+    skeleton.bones.forEach((bone) => {
+      const name = bone.name || ''
+      if (name.includes('Wing') && name.includes('_Armature') && !name.includes('.001')) {
+        if (bone.userData.initialRotationX === undefined) {
+          bone.userData.initialRotationX = bone.rotation.x
+        }
+        const isLeft = name.includes('.L') || name.includes('Left')
+        const sign = isLeft ? 1 : -1
+        const base = bone.userData.initialRotationX ?? 0
+        bone.rotation.x = base + flap * sign
+      }
+      if ((name === 'Head_Armature' || name === 'Neck.01_Armature') && !name.includes('.001')) {
+        if (bone.userData.initialRotationY === undefined) {
+          bone.userData.initialRotationY = bone.rotation.y
+        }
+        if (bone.userData.initialRotationX === undefined) {
+          bone.userData.initialRotationX = bone.rotation.x
+        }
+        const baseY = bone.userData.initialRotationY ?? 0
+        const baseX = bone.userData.initialRotationX ?? 0
+        bone.rotation.y = baseY + headY
+        bone.rotation.x = baseX + headX
+      }
+    })
+  })
+
   return (
     <group {...props} dispose={null}>
       <group name='Sketchfab_model' rotation={[-Math.PI / 2, 0, 0]}>

@@ -119,8 +119,11 @@ export function Island({
     };
   }, [gl, handlePointerDown, handlePointerUp, handlePointerMove]);
 
+  // Velocidad de rotación automática muy suave (radianes por segundo)
+  const AUTO_ROTATION_SPEED = 0.035;
+
   // This function is called on each frame update
-  useFrame(() => {
+  useFrame((_, delta) => {
     // If not rotating, apply damping to slow down the rotation (smoothly)
     if (!isRotating) {
       // Apply damping factor
@@ -132,6 +135,8 @@ export function Island({
       }
 
       islandRef.current.rotation.y += rotationSpeed.current;
+      // Rotación automática muy suave
+      islandRef.current.rotation.y += AUTO_ROTATION_SPEED * delta;
     } else {
       // When rotating, determine the current stage based on island's orientation
       const rotation = islandRef.current.rotation.y;

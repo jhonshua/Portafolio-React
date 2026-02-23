@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls, Stage } from '@react-three/drei'
 import ladpage from '../assets/images/landpage.png'
-import { Dragon, Sky, Nombre } from '../models'
+import { Dragon, AnimatedDragon, DemonDragon, Sky, Nombre } from '../models'
 import sakura from '../assets/sakura.mp3'
 import { soundoff, soundon } from '../assets/icons'
 import {  Loader } from '../components'
@@ -36,7 +36,7 @@ const Dragons = () => {
 
       <Canvas
         className={`w-full h-screen bg-transparent `}
-        camera={{ fov: 75, near: 0.1, far: -500, position: [0, 0, 5] }}>
+        camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 5] }}>
          <Suspense fallback={<Loader />}>
           <directionalLight position={[1, 1, 1]} intensity={2} />
           <ambientLight intensity={0.5} />
@@ -54,6 +54,8 @@ const Dragons = () => {
             environment='night'></Stage>
 
           <Dragon position={[0, -10, -18]} scale={[0.2, 0.2, 0.2]} />
+          <AnimatedDragon />
+          <DemonDragon />
           <Sky scale={[500, 500, 500]} isRotating={true} />
           <Nombre position={[0, 10, -18]} scale={[0.2, 0.2, 0.2]} />
         </Suspense>
