@@ -2,9 +2,24 @@ import { Canvas } from '@react-three/fiber'
 import { Suspense, useEffect, useRef, useState } from 'react'
 
 import sakura from '../assets/sakura.mp3'
-import { HomeInfo, Loader } from '../components'
+import { FlightGame, HomeInfo, Loader, SEO } from '../components'
 import { soundoff, soundon } from '../assets/icons'
-import { AnimatedDragon, Bird, DemonDragon, Island, Plane, Sky } from '../models'
+import { useI18n } from '../i18n/LanguageContext'
+import { AnimatedDragon, Bird, DemonDragon, Island, Sky } from '../models'
+
+const getBiplaneLayout = () => {
+  if (window.innerWidth < 768) {
+    return { scale: [1.5, 1.5, 1.5], position: [0, -1.5, 0] }
+  }
+  return { scale: [3, 3, 3], position: [0, -4, -4] }
+}
+
+const getIslandLayout = () => {
+  if (window.innerWidth < 768) {
+    return { scale: [0.9, 0.9, 0.9], position: [0, -6.5, -43.4] }
+  }
+  return { scale: [1, 1, 1], position: [0, -6.5, -43.4] }
+}
 
 const Home = () => {
   const audioRef = useRef(new Audio(sakura))
@@ -13,9 +28,15 @@ const Home = () => {
 
   const [currentStage, setCurrentStage] = useState(1)
   const [isRotating, setIsRotating] = useState(false)
-  const [isRotatingPlane, setIsRotatingPlane] = useState(true)
-  const [isRotatingSki, setIsRotatingski] = useState(true)
+  const [isRotatingSki] = useState(true)
   const [isPlayingMusic, setIsPlayingMusic] = useState(false)
+  const [biplane, setBiplane] = useState(getBiplaneLayout)
+  const [island, setIsland] = useState(getIslandLayout)
+  const [gameActive, setGameActive] = useState(false)
+  const [score, setScore] = useState(0)
+  const [scoreHit, setScoreHit] = useState(false)
+  const keysRef = useRef({ up: false, down: false, left: false, right: false })
+  const { t } = useI18n()
 
   useEffect(() => {
     if (isPlayingMusic) {
@@ -27,46 +48,75 @@ const Home = () => {
     }
   }, [isPlayingMusic])
 
-  const adjustBiplaneForScreenSize = () => {
-    let screenScale, screenPosition
-
-    // If screen width is less than 768px, adjust the scale and position
-    if (window.innerWidth < 768) {
-      screenScale = [1.5, 1.5, 1.5]
-      screenPosition = [0, -1.5, 0]
-    } else {
-      screenScale = [3, 3, 3]
-      screenPosition = [0, -4, -4]
+  useEffect(() => {
+    const onResize = () => {
+      setBiplane(getBiplaneLayout())
+      setIsland(getIslandLayout())
     }
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
 
-    return [screenScale, screenPosition]
+  const startGame = () => {
+    setScore(0)
+    setGameActive(true)
   }
 
-  const adjustIslandForScreenSize = () => {
-    let screenScale, screenPosition
-
-    if (window.innerWidth < 768) {
-      screenScale = [0.9, 0.9, 0.9]
-      screenPosition = [0, -6.5, -43.4]
-    } else {
-      screenScale = [1, 1, 1]
-      screenPosition = [0, -6.5, -43.4]
-    }
-
-    return [screenScale, screenPosition]
+  const exitGame = () => {
+    keysRef.current = { up: false, down: false, left: false, right: false }
+    setGameActive(false)
   }
 
-  const [biplaneScale, biplanePosition] = adjustBiplaneForScreenSize()
-  const [islandScale, islandPosition] = adjustIslandForScreenSize()
+  const addScore = points => {
+    setScore(prev => Math.max(0, prev + points))
+    if (points < 0) {
+      setScoreHit(true)
+      window.setTimeout(() => setScoreHit(false), 450)
+    }
+  }
+
+  const hold = (dir, pressed) => {
+    keysRef.current[dir] = pressed
+    if (pressed && !gameActive) startGame()
+  }
 
   return (
-    <section className='w-full h-screen relative'>
-      <div className='absolute top-28 left-0 right-0 z-10 flex items-center justify-center'>
-        {currentStage && <HomeInfo currentStage={currentStage} />}
+    <section className='relative h-screen w-full overflow-hidden'>
+      <SEO title={t.home.seoTitle} description={t.home.seoDescription} />
+
+      <div
+        className={`pointer-events-none absolute top-24 left-0 right-0 z-10 flex justify-center transition-opacity duration-300 sm:top-28 ${
+          gameActive ? 'opacity-0' : 'opacity-100'
+        }`}>
+        {currentStage ? <HomeInfo currentStage={currentStage} /> : null}
       </div>
 
+      {gameActive && (
+        <div className='absolute top-24 right-3 z-20 flex flex-col items-end gap-2 sm:right-6'>
+          <div
+            className={`rounded-2xl border px-3 py-2 shadow-lg backdrop-blur-sm transition ${
+              scoreHit
+                ? 'border-red-400 bg-red-700/70 text-white'
+                : 'border-white/25 bg-slate-900/45 text-white'
+            }`}>
+            <p className='text-[10px] uppercase tracking-[0.18em] text-white/70'>
+              {t.home.gameScore}
+            </p>
+            <p className='font-poppins text-2xl font-semibold leading-none'>
+              {score}
+            </p>
+          </div>
+          <button
+            type='button'
+            onClick={exitGame}
+            className='rounded-full border border-white/25 bg-slate-900/55 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-sm hover:bg-slate-900/75'>
+            {t.home.gameExitBtn} · Esc
+          </button>
+        </div>
+      )}
+
       <Canvas
-        className={`w-full h-screen bg-transparent ${
+        className={`h-screen w-full bg-transparent ${
           isRotating ? 'cursor-grabbing' : 'cursor-grab'
         }`}
         camera={{ near: 0.1, far: 1000 }}>
@@ -86,37 +136,89 @@ const Home = () => {
             intensity={1}
           />
 
-          <Bird />
-          <AnimatedDragon />
-          <DemonDragon />
+          <Bird scenery />
+          <AnimatedDragon scenery />
+          <DemonDragon scenery />
           <Sky isRotating={isRotatingSki} />
           <Island
             isRotating={isRotating}
             setIsRotating={setIsRotating}
             setCurrentStage={setCurrentStage}
-            position={islandPosition}
+            enableKeyboard={!gameActive}
+            position={island.position}
             rotation={[0.1, 4.7077, 0]}
-            scale={islandScale}
+            scale={island.scale}
           />
-          <Plane
-            isRotating={isRotatingPlane}
-            position={biplanePosition}
-            rotation={[0, 20.1, 0]}
-            scale={biplaneScale}
+          <FlightGame
+            planeScale={biplane.scale}
+            planePosition={biplane.position}
+            planeRotation={[0, 20.1, 0]}
+            gameActive={gameActive}
+            keysRef={keysRef}
+            onStart={startGame}
+            onScore={addScore}
+            onExit={exitGame}
           />
         </Suspense>
       </Canvas>
 
-      <div className='absolute bottom-2 left-2'>
+      <div className='pointer-events-none absolute bottom-5 left-0 right-0 z-10 flex flex-col items-center gap-3 px-4'>
+        <div className='rounded-full border border-white/20 bg-slate-900/40 px-3 py-1.5 text-center text-xs text-white/90 backdrop-blur-sm sm:text-sm'>
+          {gameActive
+            ? `${t.home.gameHint} · ${t.home.gameExit}`
+            : `${t.home.gameStart} · ${t.home.gameHint}`}
+        </div>
+
+        {!gameActive && (
+          <div className='flex items-center gap-2' aria-hidden='true'>
+            {[1, 2, 3, 4].map(stage => (
+              <span
+                key={stage}
+                className={`h-2 w-2 rounded-full transition ${
+                  currentStage === stage ? 'scale-125 bg-white' : 'bg-white/40'
+                }`}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+
+      <div className='absolute bottom-16 right-3 z-20 grid grid-cols-3 gap-1.5 sm:bottom-6'>
+        <span />
+        <PadButton label='▲' onHold={pressed => hold('up', pressed)} />
+        <span />
+        <PadButton label='◀' onHold={pressed => hold('left', pressed)} />
+        <PadButton label='▼' onHold={pressed => hold('down', pressed)} />
+        <PadButton label='▶' onHold={pressed => hold('right', pressed)} />
+      </div>
+
+      <button
+        type='button'
+        className='absolute bottom-4 left-3 z-20'
+        onClick={() => setIsPlayingMusic(!isPlayingMusic)}
+        aria-label={isPlayingMusic ? t.home.musicOff : t.home.musicOn}>
         <img
           src={!isPlayingMusic ? soundoff : soundon}
-          alt='jukebox'
-          onClick={() => setIsPlayingMusic(!isPlayingMusic)}
-          className='w-10 h-10 cursor-pointer object-contain'
+          alt=''
+          className='h-10 w-10 cursor-pointer object-contain'
         />
-      </div>
+      </button>
     </section>
   )
 }
+
+const PadButton = ({ label, onHold }) => (
+  <button
+    type='button'
+    className='flex h-11 w-11 items-center justify-center rounded-xl border border-white/25 bg-slate-900/50 text-lg text-white backdrop-blur-sm active:bg-sky-500/70'
+    onPointerDown={event => {
+      event.preventDefault()
+      onHold(true)
+    }}
+    onPointerUp={() => onHold(false)}
+    onPointerLeave={() => onHold(false)}>
+    {label}
+  </button>
+)
 
 export default Home

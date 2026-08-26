@@ -4,7 +4,8 @@ import { Suspense, useRef, useState } from 'react'
 
 import { Fox } from '../models'
 import useAlert from '../hooks/useAlert'
-import { Alert, Loader } from '../components'
+import { Alert, Loader, SEO } from '../components'
+import { useI18n } from '../i18n/LanguageContext'
 
 import { useCallback } from 'react'
 import Particles from 'react-particles'
@@ -16,6 +17,7 @@ const Contact = () => {
   const { alert, showAlert, hideAlert } = useAlert()
   const [loading, setLoading] = useState(false)
   const [currentAnimation, setCurrentAnimation] = useState('idle')
+  const { t } = useI18n()
 
   const particlesInit = useCallback(async engine => {
     console.log(engine)
@@ -60,7 +62,7 @@ const Contact = () => {
           setLoading(false)
           showAlert({
             show: true,
-            text: 'Thank you for your message 😃',
+            text: `${t.contact.success} 😃`,
             type: 'success',
           })
 
@@ -81,7 +83,7 @@ const Contact = () => {
 
           showAlert({
             show: true,
-            text: "I didn't receive your message 😢",
+            text: `${t.contact.error} 😢`,
             type: 'danger',
           })
         }
@@ -90,6 +92,7 @@ const Contact = () => {
 
   return (
     <section className='relative flex lg:flex-row flex-col max-container'>
+      <SEO title={t.contact.seoTitle} description={t.contact.seoDescription} />
       <Particles
         id='tsparticles'
         init={particlesInit}
@@ -160,18 +163,18 @@ const Contact = () => {
         }}></Particles>
       {alert.show && <Alert {...alert} />}
       <div className='flex-1 min-w-[50%] flex flex-col'>
-        <h1 className='head-text'>Get in Touch</h1>
+        <h1 className='head-text'>{t.contact.title}</h1>
         <form
           ref={formRef}
           onSubmit={handleSubmit}
           className='w-full flex flex-col gap-7 mt-14'>
           <label className='text-black-500 font-semibold'>
-            Name
+            {t.contact.name}
             <input
               type='text'
               name='name'
               className='input'
-              placeholder='John'
+              placeholder={t.contact.namePlaceholder}
               required
               value={form.name}
               onChange={handleChange}
@@ -180,12 +183,12 @@ const Contact = () => {
             />
           </label>
           <label className='text-black-500 font-semibold'>
-            Email
+            {t.contact.email}
             <input
               type='email'
               name='email'
               className='input'
-              placeholder='John@gmail.com'
+              placeholder={t.contact.emailPlaceholder}
               required
               value={form.email}
               onChange={handleChange}
@@ -194,12 +197,12 @@ const Contact = () => {
             />
           </label>
           <label className='text-black-500 font-semibold'>
-            Your Message
+            {t.contact.message}
             <textarea
               name='message'
               rows='4'
               className='textarea'
-              placeholder='Write your thoughts here...'
+              placeholder={t.contact.messagePlaceholder}
               value={form.message}
               onChange={handleChange}
               onFocus={handleFocus}
@@ -213,7 +216,7 @@ const Contact = () => {
             className='btn'
             onFocus={handleFocus}
             onBlur={handleBlur}>
-            {loading ? 'Sending...' : 'Submit'}
+            {loading ? t.contact.sending : t.contact.submit}
           </button>
         </form>
       </div>
@@ -244,7 +247,7 @@ const Contact = () => {
             />
           </Suspense>
         </Canvas>
-      </div>{' '}
+      </div>
     </section>
   )
 }

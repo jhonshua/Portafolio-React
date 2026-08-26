@@ -27,17 +27,27 @@ import arrow from './arrow.svg'
 import contact from './contact.svg'
 import soundon from './soundon.png'
 import soundoff from './soundoff.png'
-import python from './python.png'
+import python from './python.svg'
 import imgPisopro from './pisoproenaccion1.webp'
 import phone from './phone.svg'
 import figma from './figma.png'
-import angular from './angular.png'
-import arduino from './arduino.png'
-import electronica from './ingeneria.png'
+import angular from './angular.svg'
+import arduino from './arduino.svg'
+import electronica from './iot.svg'
 import game from './game.svg'
 import hamburger from './hamburger.svg'
 import snap360 from '../images/snap360.png'
 import pisopro from './pisopro.png'
+import docker from './docker.svg'
+import kubernetes from './kubernete.svg'
+import django from './jango.svg'
+import dart from './dart.svg'
+import reactNative from './react-native.svg'
+import aws from './aws.svg'
+import laravel from './laravel.svg'
+import postgresql from './postgresql.svg'
+import redis from './redis.svg'
+import flutter from './flutter.svg'
 
 export {
   hamburger,
@@ -78,6 +88,16 @@ export {
   imgPisopro,
   phone,
   game,
-  snap360 ,
-  pisopro
+  snap360,
+  pisopro,
+  docker,
+  kubernetes,
+  django,
+  dart,
+  reactNative,
+  aws,
+  laravel,
+  postgresql,
+  redis,
+  flutter,
 }

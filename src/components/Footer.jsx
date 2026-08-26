@@ -1,15 +1,19 @@
 import { Link } from 'react-router-dom'
 
 import { socialLinks } from '../constants'
+import { useI18n } from '../i18n/LanguageContext'
 
 const Footer = () => {
+  const { t } = useI18n()
+
   return (
     <footer className='footer font-poppins'>
       <hr className='border-slate-200' />
 
       <div className='footer-container'>
         <p>
-          © 2023 <strong>Julio Cesar Llinas</strong>. All rights reserved.
+          © {new Date().getFullYear()} <strong>Julio Cesar Llinas</strong>.{' '}
+          {t.footer.rights}
         </p>
 
         <div className='flex gap-3 justify-center items-center'>

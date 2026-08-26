@@ -5,4 +5,20 @@ import Navbar from './Navbar'
 import Footer from './Footer'
 import HomeInfo from './HomeInfo'
 
-export { CTA, Alert, Loader, Navbar, Footer, HomeInfo }
+import SEO from './SEO'
+import LandingOverlay from './LandingOverlay'
+import LanguageSwitcher from './LanguageSwitcher'
+import FlightGame from './FlightGame'
+
+export {
+  CTA,
+  Alert,
+  Loader,
+  Navbar,
+  Footer,
+  HomeInfo,
+  SEO,
+  LandingOverlay,
+  LanguageSwitcher,
+  FlightGame,
+}

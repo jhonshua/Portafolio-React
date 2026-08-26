@@ -1,12 +1,11 @@
 import React, { useEffect, Suspense, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls, Stage } from '@react-three/drei'
-import ladpage from '../assets/images/landpage.png'
 import { Dragon, AnimatedDragon, DemonDragon, Sky, Nombre } from '../models'
 import sakura from '../assets/sakura.mp3'
 import { soundoff, soundon } from '../assets/icons'
-import {  Loader } from '../components'
+import { LandingOverlay, Loader, SEO } from '../components'
+import { useI18n } from '../i18n/LanguageContext'
 
 const Dragons = () => {
   const audioRef = useRef(new Audio(sakura))
@@ -15,6 +14,8 @@ const Dragons = () => {
 
   const ref = useRef()
   const [isPlayingMusic, setIsPlayingMusic] = useState(false)
+  const [hasExplored, setHasExplored] = useState(false)
+  const { t } = useI18n()
 
   useEffect(() => {
     if (isPlayingMusic) {
@@ -28,16 +29,16 @@ const Dragons = () => {
 
   return (
     <section className='w-full h-screen relative'>
-      <Link to='/home'>
-        <div className='absolute top-28 left-0 right-0 z-10 flex items-center justify-center'>
-          <img src={ladpage} alt=' ladpage' />
-        </div>
-      </Link>
+      <SEO
+        title={t.landing.seoTitle}
+        description={t.landing.seoDescription}
+      />
+      <LandingOverlay hasExplored={hasExplored} />
 
       <Canvas
-        className={`w-full h-screen bg-transparent `}
+        className='w-full h-screen bg-transparent cursor-grab active:cursor-grabbing'
         camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 5] }}>
-         <Suspense fallback={<Loader />}>
+        <Suspense fallback={<Loader />}>
           <directionalLight position={[1, 1, 1]} intensity={2} />
           <ambientLight intensity={0.5} />
           <pointLight position={[10, 5, 10]} intensity={2} />
@@ -56,21 +57,22 @@ const Dragons = () => {
           <Dragon position={[0, -10, -18]} scale={[0.2, 0.2, 0.2]} />
           <AnimatedDragon />
           <DemonDragon />
-          <Sky scale={[500, 500, 500]} isRotating={true} />
-          <Nombre position={[0, 10, -18]} scale={[0.2, 0.2, 0.2]} />
+          <Sky scale={[500, 500, 500]} isRotating={true} speed={0.038} />
+          <Nombre position={[0, 8, -18]} scale={[0.2, 0.2, 0.2]} />
         </Suspense>
         <OrbitControls
           ref={ref}
           minDistance={1}
           maxDistance={20}
-          minPitch={-10}
-          maxPitch={45}
+          minPolarAngle={Math.PI / 4}
+          maxPolarAngle={Math.PI / 1.7}
+          onStart={() => setHasExplored(true)}
         />
       </Canvas>
-      <div className='absolute bottom-2 left-2'>
+      <div className='absolute bottom-2 left-2 z-20'>
         <img
           src={!isPlayingMusic ? soundoff : soundon}
-          alt='jukebox'
+          alt={isPlayingMusic ? t.landing.musicOff : t.landing.musicOn}
           onClick={() => setIsPlayingMusic(!isPlayingMusic)}
           className='w-10 h-10 cursor-pointer object-contain'
         />

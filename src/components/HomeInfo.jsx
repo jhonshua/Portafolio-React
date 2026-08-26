@@ -1,90 +1,62 @@
 import { Link } from 'react-router-dom'
+import { useI18n } from '../i18n/LanguageContext'
+import { arrow } from '../assets/icons'
 import developer from '../assets/images/programador.png'
 import developer2 from '../assets/images/programador2.png'
 import proyecto from '../assets/images/proyecto.png'
 import callme from '../assets/images/callme.png'
-import { arrow } from '../assets/icons'
+
+const STAGE_LINKS = {
+  1: '/about',
+  2: '/about',
+  3: '/projects',
+  4: '/contact',
+}
+
+const STAGE_IMAGES = {
+  1: developer,
+  2: developer2,
+  3: proyecto,
+  4: callme,
+}
 
 const HomeInfo = ({ currentStage }) => {
-  if (currentStage === 1)
-    return (
-      <div>
-        <img src={developer} alt='developer' />
+  const { t } = useI18n()
+  const stage = t.home.stages[currentStage]
+  if (!stage) return null
 
-        <h1 className='sm:text-xl sm:leading-snug text-center neo-brutalism-blue py-4 px-8 text-white mx-5  border-black border-b-2'>
-          Hi, I'm
-          <span className='font-semibold mx-2 text-white'>
-            Julio Cesar Llinas
-          </span>
-          👋
-          <br />
-          I'm an electronic engineer and full-stack developer.
+  const imageSrc = STAGE_IMAGES[currentStage]
+
+  return (
+    <div
+      key={`${currentStage}-${stage.title}`}
+      className='landing-fade-up pointer-events-auto mx-4 flex max-w-md flex-col items-center'>
+      {imageSrc ? (
+        <img
+          src={imageSrc}
+          alt=''
+          className='mb-1 h-28 w-auto object-contain drop-shadow-lg sm:h-36'
+        />
+      ) : null}
+      <article className='home-info-card w-full px-5 py-4 text-center sm:px-6'>
+        <p className='text-[10px] font-semibold uppercase tracking-[0.22em] text-white/70 sm:text-[11px]'>
+          {stage.eyebrow}
+        </p>
+        <h1 className='font-poppins text-base font-semibold leading-snug text-white sm:text-xl'>
+          {stage.title}
         </h1>
-      </div>
-    )
-
-  if (currentStage === 2) {
-    return (
-      <div>
-        <img src={developer2} alt='developer2' />
-
-        <div className='info-box'>
-          <p className='font-medium sm:text-xl text-center'>
-            Would you like to learn more about me and my skills? <br />
-          </p>
-
-          <Link to='/about' className='neo-brutalism-white neo-btn'>
-            Learn more about me.
-            <img src={arrow} alt='arrow' className='w-4 h-4 object-contain' />
-            🧐
-          </Link>
-        </div>
-      </div>
-    )
-  }
-
-  if (currentStage === 3) {
-    return (
-      <div>
-        <img src={proyecto} alt='developer' />
-        <br />
-        <div className='info-box'>
-          <p className='font-medium text-center sm:text-xl'>
-            Would you be interested in seeing some of my projects? I'm always
-            looking for feedback. <br />
-          </p>
-
-          <Link to='/projects' className='neo-brutalism-white neo-btn'>
-            Visit my portfolio
-            <img src={arrow} alt='arrow' className='w-4 h-4 object-contain' />
-            😎
-          </Link>
-        </div>
-      </div>
-    )
-  }
-
-  if (currentStage === 4) {
-    return (
-      <div>
-        <img src={callme} alt='developer' />
-        <div className='info-box'>
-          <p className='font-medium sm:text-xl text-center'>
-            Need a project done or looking for a dev? <br /> I'm just a few
-            keystrokes away
-          </p>
-
-          <Link to='/contact' className='neo-brutalism-white neo-btn'>
-            Let's talk
-            <img src={arrow} alt='arrow' className='w-4 h-4 object-contain' />
-            🥇
-          </Link>
-        </div>
-      </div>
-    )
-  }
-
-  return null
+        <p className='mt-1 text-xs leading-relaxed text-white/85 sm:text-sm'>
+          {stage.body}
+        </p>
+        <Link
+          to={STAGE_LINKS[currentStage]}
+          className='mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-sky-200 transition hover:text-white'>
+          {stage.cta}
+          <img src={arrow} alt='' className='h-4 w-4 object-contain' />
+        </Link>
+      </article>
+    </div>
+  )
 }
 
 export default HomeInfo

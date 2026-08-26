@@ -1,134 +1,211 @@
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
 
-import { CTA } from '../components'
+import { CTA, SEO } from '../components'
 import { projects } from '../constants'
-import { arrow } from '../assets/icons'
+import { useI18n } from '../i18n/LanguageContext'
+
+const ProjectGallery = ({ slides, title, labels = {} }) => {
+  const [active, setActive] = useState(0)
+  const current = slides[active]
+  const currentLabel = labels[current.id] || current.label
+
+  return (
+    <div>
+      <div className='aspect-video overflow-hidden rounded-xl bg-slate-100 shadow-md'>
+        {current.video ? (
+          <iframe
+            key={current.id}
+            className='h-full w-full'
+            src={current.video}
+            title={`${title} — ${currentLabel}`}
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+            allowFullScreen
+          />
+        ) : (
+          <img
+            key={current.id}
+            src={current.src}
+            alt={`${title} — ${currentLabel}`}
+            className={`h-full w-full transition-all duration-300 ${
+              current.fit === 'contain'
+                ? `object-contain ${current.fitBg || 'bg-white'}`
+                : 'object-cover'
+            }`}
+          />
+        )}
+      </div>
+      {slides.length > 1 && (
+      <div
+        className={`mt-3 grid gap-2 ${
+          slides.length === 2
+            ? 'grid-cols-2'
+            : slides.length === 4
+              ? 'grid-cols-2 sm:grid-cols-4'
+              : 'grid-cols-3'
+        }`}>
+        {slides.map((slide, index) => {
+          const isActive = index === active
+          const label = labels[slide.id] || slide.label
+          const thumb = slide.thumb || slide.src
+          return (
+            <button
+              key={slide.id}
+              type='button'
+              onClick={() => setActive(index)}
+              className={`overflow-hidden rounded-lg text-left transition ${
+                isActive
+                  ? 'border-2 border-blue-600'
+                  : 'border border-slate-200 hover:border-slate-300'
+              }`}>
+              <img
+                src={thumb}
+                alt={label}
+                className={`aspect-video w-full ${
+                  slide.fit === 'contain'
+                    ? `object-contain ${slide.fitBg || 'bg-white'}`
+                    : 'object-cover'
+                }`}
+              />
+              <span
+                className={`block px-1.5 py-1 text-center text-[11px] font-medium leading-tight ${
+                  isActive ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-700'
+                }`}>
+                {label}
+              </span>
+            </button>
+          )
+        })}
+      </div>
+      )}
+    </div>
+  )
+}
+
+const ProjectCard = ({ project, copy, labels }) => {
+  const title = copy.name || project.name
+  const description = copy.description || project.description
+  const preview = project.img || project.fallbackImg
+  const hasGallery = Array.isArray(project.gallery) && project.gallery.length > 0
+
+  return (
+    <article className='flex h-full flex-col rounded-2xl border border-slate-100 bg-white p-4 shadow-sm'>
+      {hasGallery ? (
+        <ProjectGallery
+          slides={project.gallery}
+          title={title}
+          labels={copy.gallery}
+        />
+      ) : project.video ? (
+        <div className='aspect-video overflow-hidden rounded-xl bg-slate-100 shadow-md'>
+          <iframe
+            className='h-full w-full'
+            src={project.video}
+            title={title}
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+            allowFullScreen
+          />
+        </div>
+      ) : (
+        <div className='aspect-video overflow-hidden rounded-xl bg-slate-100 shadow-md'>
+          {preview ? (
+            <img
+              src={preview}
+              alt={title}
+              className={`h-full w-full ${
+                project.imgFit === 'contain'
+                  ? 'object-contain p-8'
+                  : 'object-cover'
+              }`}
+            />
+          ) : (
+            <div className='flex h-full w-full items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 px-6 text-center'>
+              <p className='font-poppins text-sm font-semibold text-slate-500'>
+                {title}
+              </p>
+            </div>
+          )}
+        </div>
+      )}
+
+      {project.stack.length > 0 && (
+      <div className='mt-4 flex flex-wrap gap-2'>
+        {project.stack.map(tech => (
+          <span
+            key={tech}
+            className='rounded-md bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-700'>
+            {tech}
+          </span>
+        ))}
+      </div>
+      )}
+
+      <h3 className='mt-4 font-poppins text-xl font-semibold text-slate-900'>
+        {title}
+      </h3>
+      <p className='mt-2 flex-1 text-sm leading-relaxed text-slate-600'>
+        {description}
+      </p>
+
+      <div className='mt-5 flex flex-wrap gap-4 text-sm font-semibold'>
+        {project.link && (
+          <a
+            href={project.link}
+            target='_blank'
+            rel='noopener noreferrer'
+            className='text-blue-600 hover:underline'>
+            {labels.live}
+          </a>
+        )}
+        {project.code && (
+          <a
+            href={project.code}
+            target='_blank'
+            rel='noopener noreferrer'
+            className='text-blue-600 hover:underline'>
+            {labels.code}
+          </a>
+        )}
+        {project.certificate && (
+          <a
+            href={project.certificate}
+            target='_blank'
+            rel='noopener noreferrer'
+            className='text-blue-600 hover:underline'>
+            {labels.certificate}
+          </a>
+        )}
+      </div>
+    </article>
+  )
+}
 
 const Projects = () => {
+  const { t } = useI18n()
+
   return (
     <section className='max-container'>
+      <SEO title={t.projects.seoTitle} description={t.projects.seoDescription} />
       <h1 className='head-text'>
-        My{' '}
-        <span className='blue-gradient_text drop-shadow font-semibold'>
-          Projects
+        {t.projects.titlePrefix}{' '}
+        <span className='blue-gradient_text font-semibold drop-shadow'>
+          {t.projects.title}
         </span>
       </h1>
 
-      <p className='text-slate-500 mt-2 leading-relaxed'>
-        I've embarked on numerous projects throughout the years, but these are
-        the ones I hold closest to my heart. Many of them are open-source, so if
-        you come across something that piques your interest, feel free to
-        explore the codebase and contribute your ideas for further enhancements.
-        Your collaboration is highly valued!
-      </p>
+      <p className='mt-2 leading-relaxed text-slate-500'>{t.projects.intro}</p>
 
-      <div className='flex flex-wrap my-20 gap-16 justify-center btn-back '>
+      <div className='my-16 grid grid-cols-1 gap-8 md:grid-cols-2'>
         {projects.map(project => (
-          <div className='lg:w-[400px] w-full max-w-[400px] mx-auto' key={project.name}>
-            <div className='block-container w-12 h-12 mx-auto'>
-              <div className={`btn-back rounded-xl ${project.theme}`} />
-              <div className='btn-front rounded-xl flex justify-center items-center'>
-                <img
-                  src={project.iconUrl}
-                  alt='project icon'
-                  className='w-1/2 h-1/2 object-contain'
-                />{' '}
-              </div>{' '}
-            </div>{' '}
-            <br />
-            {/* Contenedor responsive para videos e imágenes */}
-            <div className='w-full flex justify-center mb-4'>
-              {project.video ? (
-                <div className='relative w-full max-w-[400px] aspect-video'>
-                  <iframe
-                    className='absolute inset-0 w-full h-full rounded-lg shadow-md'
-                    src={project.video}
-                    title='YouTube video player'
-                    frameBorder='0'
-                    allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-                    allowFullScreen>
-                  </iframe>
-                </div>
-              ) : project.img ? (
-                <img
-                  src={project.img}
-                  alt={`Imagen del proyecto ${project.name}`}
-                  className='w-full max-w-[400px] h-auto aspect-video object-cover rounded-lg shadow-md'
-                />
-              ) : (
-                <div className='w-full max-w-[400px] aspect-video flex justify-center items-center bg-gray-200 text-gray-500 rounded-lg shadow-md'>
-                  <span className='text-center px-4'>No hay contenido multimedia disponible.</span>
-                </div>
-              )}
-            </div>
-            <div className='mt-5 flex flex-col'>
-              <h4 className='text-2xl font-poppins font-semibold'>
-                {project.name}
-              </h4>
-              <p className='mt-2 text-slate-500'>{project.description}</p>
-              <div className='mt-5 flex items-center gap-2 font-poppins'>
-                {project.link ? (
-                  <>
-                    <Link
-                      to={project.link}
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      className='font-semibold text-blue-600'>
-                      Live Link.
-                    </Link>
-                    <img
-                      src={arrow}
-                      alt='arrow'
-                      className='w-4 h-4 object-contain'
-                    />
-                  </>
-                ) : (
-                  <></>
-                )}
-              </div>
-              <div className='mt-5 flex items-center gap-2 font-poppins'>
-                {project.code ? (
-                  <>
-                    <Link
-                      to={project.code}
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      className='font-semibold text-blue-600'>
-                      view the code.
-                    </Link>
-                    <img
-                      src={arrow}
-                      alt='arrow'
-                      className='w-4 h-4 object-contain'
-                    />
-                  </>
-                ) : (
-                  <></>
-                )}
-              </div>
-
-              <div className='mt-5 flex items-center gap-2 font-poppins'>
-                {project.certificate ? (
-                  <>
-                    <Link
-                      to={project.certificate}
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      className='font-semibold text-blue-600'>
-                      view the certificate.
-                    </Link>
-                    <img
-                      src={arrow}
-                      alt='arrow'
-                      className='w-4 h-4 object-contain'
-                    />
-                  </>
-                ) : (
-                  <></>
-                )}
-              </div>
-            </div>
-          </div>
+          <ProjectCard
+            key={project.id}
+            project={project}
+            copy={t.projectItems[project.id] || {}}
+            labels={{
+              live: t.projects.live,
+              code: t.projects.code,
+              certificate: t.projects.certificate,
+            }}
+          />
         ))}
       </div>
 
