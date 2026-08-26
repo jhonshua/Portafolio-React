@@ -67,7 +67,7 @@ const ProjectGallery = ({ slides, title, labels = {} }) => {
                 }`}
               />
               <span
-                className={`block px-1.5 py-1 text-center text-[11px] font-medium leading-tight ${
+                className={`block px-1 py-1 text-center text-[10px] font-medium leading-tight sm:px-1.5 sm:text-[11px] ${
                   isActive ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-700'
                 }`}>
                 {label}
@@ -88,7 +88,7 @@ const ProjectCard = ({ project, copy, labels }) => {
   const hasGallery = Array.isArray(project.gallery) && project.gallery.length > 0
 
   return (
-    <article className='flex h-full flex-col rounded-2xl border border-slate-100 bg-white p-4 shadow-sm'>
+    <article className='flex h-full min-w-0 flex-col rounded-2xl border border-slate-100 bg-white p-4 shadow-sm'>
       {hasGallery ? (
         <ProjectGallery
           slides={project.gallery}
@@ -192,7 +192,9 @@ const Projects = () => {
         </span>
       </h1>
 
-      <p className='mt-2 leading-relaxed text-slate-500'>{t.projects.intro}</p>
+      <p className='mt-2 break-words leading-relaxed text-slate-500'>
+        {t.projects.intro}
+      </p>
 
       <div className='my-16 grid grid-cols-1 gap-8 md:grid-cols-2'>
         {projects.map(project => (

@@ -55,22 +55,24 @@ const Navbar = () => {
         <LanguageSwitcher />
       </div>
 
-      <div className='flex items-center gap-3 md:hidden'>
+      <div className='flex shrink-0 items-center gap-2 md:hidden'>
         <LanguageSwitcher />
         <button
-          className='flex h-8 w-8 flex-col items-center justify-center space-y-1'
+          type='button'
+          className='flex h-11 w-11 flex-col items-center justify-center gap-1 rounded-lg border border-slate-200 bg-white/90 shadow-sm'
           onClick={toggleMenu}
-          aria-label={t.nav.menu}>
+          aria-label={t.nav.menu}
+          aria-expanded={isMenuOpen}>
           <span
-            className={`block h-0.5 w-6 bg-green-300 transition-transform duration-300 ${
+            className={`block h-0.5 w-5 bg-slate-800 transition-transform duration-300 ${
               isMenuOpen ? 'translate-y-1.5 rotate-45' : ''
             }`}></span>
           <span
-            className={`block h-0.5 w-6 bg-green-300 transition-opacity duration-300 ${
+            className={`block h-0.5 w-5 bg-slate-800 transition-opacity duration-300 ${
               isMenuOpen ? 'opacity-0' : ''
             }`}></span>
           <span
-            className={`block h-0.5 w-6 bg-green-300 transition-transform duration-300 ${
+            className={`block h-0.5 w-5 bg-slate-800 transition-transform duration-300 ${
               isMenuOpen ? '-translate-y-1.5 -rotate-45' : ''
             }`}></span>
         </button>
@@ -80,7 +82,7 @@ const Navbar = () => {
         className={`absolute left-0 right-0 top-full z-50 border-t border-gray-200 bg-white/95 backdrop-blur-sm transition-all duration-300 md:hidden ${
           isMenuOpen ? 'visible opacity-100' : 'invisible opacity-0'
         }`}>
-        <div className='flex flex-col space-y-4 px-8 py-4'>
+        <div className='flex flex-col space-y-4 px-4 py-4 sm:px-8'>
           <NavLink to='/' onClick={closeMenu} className={mobileLinkClass}>
             {t.nav.model3d}
           </NavLink>

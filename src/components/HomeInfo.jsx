@@ -30,22 +30,22 @@ const HomeInfo = ({ currentStage }) => {
   return (
     <div
       key={`${currentStage}-${stage.title}`}
-      className='landing-fade-up pointer-events-auto mx-4 flex max-w-md flex-col items-center'>
+      className='landing-fade-up pointer-events-auto mx-auto flex w-full min-w-0 max-w-md flex-col items-center px-4'>
       {imageSrc ? (
         <img
           src={imageSrc}
           alt=''
-          className='mb-1 h-28 w-auto object-contain drop-shadow-lg sm:h-36'
+          className='mb-1 h-24 w-auto max-w-[9.5rem] object-contain drop-shadow-lg sm:h-36 sm:max-w-[12rem]'
         />
       ) : null}
-      <article className='home-info-card w-full px-5 py-4 text-center sm:px-6'>
+      <article className='home-info-card w-full min-w-0 px-4 py-4 text-center sm:px-6'>
         <p className='text-[10px] font-semibold uppercase tracking-[0.22em] text-white/70 sm:text-[11px]'>
           {stage.eyebrow}
         </p>
         <h1 className='font-poppins text-base font-semibold leading-snug text-white sm:text-xl'>
           {stage.title}
         </h1>
-        <p className='mt-1 text-xs leading-relaxed text-white/85 sm:text-sm'>
+        <p className='mt-1 text-xs leading-relaxed text-white/85 break-words sm:text-sm'>
           {stage.body}
         </p>
         <Link

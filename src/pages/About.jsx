@@ -19,17 +19,17 @@ const TIMELINE_PHOTOS = {
 }
 
 const SkillCard = ({ skill, description }) => (
-  <div className='group relative'>
-    <div className='flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-xl border border-slate-200 bg-white p-2.5 transition-all duration-200 hover:-translate-y-1 hover:shadow-md sm:h-20 sm:w-20'>
+  <div className='group relative' tabIndex={0}>
+    <div className='flex h-16 w-16 items-center justify-center rounded-xl border border-slate-200 bg-white p-2 transition-all duration-200 hover:-translate-y-1 hover:shadow-md sm:h-20 sm:w-20 sm:p-2.5'>
       <img
         src={skill.icon || skill.imageUrl}
         alt={skill.name}
-        className='h-10 w-10 object-contain sm:h-12 sm:w-12'
+        className='h-9 w-9 object-contain sm:h-12 sm:w-12'
       />
     </div>
     <div
       role='tooltip'
-      className='pointer-events-none absolute left-1/2 top-full z-30 mt-2 w-64 origin-top -translate-x-1/2 scale-95 rounded-xl border border-slate-700 bg-slate-900 p-3 text-white opacity-0 shadow-xl transition-all duration-200 group-hover:scale-100 group-hover:opacity-100'>
+      className='pointer-events-none absolute left-1/2 top-full z-30 mt-2 w-[min(16rem,calc(100vw-2rem))] origin-top -translate-x-1/2 scale-95 rounded-xl border border-slate-700 bg-slate-900 p-3 text-white opacity-0 shadow-xl transition-all duration-200 group-hover:scale-100 group-hover:opacity-100 group-focus-within:scale-100 group-focus-within:opacity-100'>
       <p className='mb-1 text-sm font-bold text-blue-400'>{skill.name}</p>
       <p className='text-xs leading-normal text-slate-300'>
         {description || skill.description}
@@ -44,20 +44,18 @@ const About = () => {
   return (
     <section className='max-container'>
       <SEO title={t.about.seoTitle} description={t.about.seoDescription} />
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-        }}>
+      <div className='flex flex-col items-start gap-4 sm:flex-row sm:items-center'>
         <h1 className='head-text'>
           {t.about.hello}{' '}
           <span className='blue-gradient_text font-semibold drop-shadow'>
-            {' '}
             Julio.
-          </span>{' '}
-        </h1>{' '}
-        <img src={developer} alt='developer' />
+          </span>
+        </h1>
+        <img
+          src={developer}
+          alt=''
+          className='h-28 w-auto max-w-[9.5rem] object-contain sm:h-36 sm:max-w-[12rem]'
+        />
       </div>
 
       <div className='mt-5 flex flex-col gap-3 text-slate-700'>
@@ -73,7 +71,7 @@ const About = () => {
               <h4 className='mb-5 font-poppins text-lg font-semibold text-slate-800 sm:text-xl'>
                 {t.about.skillGroups[group]}
               </h4>
-              <div className='flex flex-wrap gap-4 pb-6'>
+              <div className='flex flex-wrap gap-3 pb-6 sm:gap-4'>
                 {skills
                   .filter(skill => (skill.category || skill.group) === group)
                   .map(skill => (

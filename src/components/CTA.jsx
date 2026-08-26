@@ -11,7 +11,7 @@ const CTA = () => {
         {t.cta.text} <br className='sm:block hidden' />
         {t.cta.textLine2}
       </p>
-      <div className='flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row'>
+      <div className='flex w-full max-w-sm flex-col items-stretch gap-3 sm:max-w-none sm:w-auto sm:flex-row sm:items-center'>
         <Link to='/contact' className='btn'>
           {t.cta.button}
         </Link>

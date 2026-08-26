@@ -85,7 +85,7 @@ const Home = () => {
       <SEO title={t.home.seoTitle} description={t.home.seoDescription} />
 
       <div
-        className={`pointer-events-none absolute top-24 left-0 right-0 z-10 flex justify-center transition-opacity duration-300 sm:top-28 ${
+        className={`pointer-events-none absolute left-0 right-0 top-24 z-10 flex min-w-0 justify-center px-1 transition-opacity duration-300 sm:top-28 ${
           gameActive ? 'opacity-0' : 'opacity-100'
         }`}>
         {currentStage ? <HomeInfo currentStage={currentStage} /> : null}
@@ -162,8 +162,8 @@ const Home = () => {
         </Suspense>
       </Canvas>
 
-      <div className='pointer-events-none absolute bottom-5 left-0 right-0 z-10 flex flex-col items-center gap-3 px-4'>
-        <div className='rounded-full border border-white/20 bg-slate-900/40 px-3 py-1.5 text-center text-xs text-white/90 backdrop-blur-sm sm:text-sm'>
+      <div className='pointer-events-none absolute bottom-[7.5rem] left-0 right-0 z-10 flex flex-col items-center gap-3 px-4 sm:bottom-24'>
+        <div className='max-w-[22rem] rounded-2xl border border-white/20 bg-slate-900/40 px-3 py-1.5 text-center text-xs leading-snug text-white/90 backdrop-blur-sm sm:max-w-none sm:rounded-full sm:text-sm'>
           {gameActive
             ? `${t.home.gameHint} · ${t.home.gameExit}`
             : `${t.home.gameStart} · ${t.home.gameHint}`}
@@ -183,7 +183,7 @@ const Home = () => {
         )}
       </div>
 
-      <div className='absolute bottom-16 right-3 z-20 grid grid-cols-3 gap-1.5 sm:bottom-6'>
+      <div className='absolute bottom-4 right-3 z-20 grid grid-cols-3 gap-1.5'>
         <span />
         <PadButton label='▲' onHold={pressed => hold('up', pressed)} />
         <span />

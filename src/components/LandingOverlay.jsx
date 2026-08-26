@@ -43,7 +43,7 @@ const LandingOverlay = ({ hasExplored }) => {
 
   return (
     <div className='pointer-events-none absolute inset-0 z-10 flex flex-col justify-between'>
-      <div className='landing-scrim-top px-5 pt-8 sm:px-10 sm:pt-10'>
+      <div className='landing-scrim-top px-4 pt-6 sm:px-10 sm:pt-10'>
         <div className='mb-6 flex justify-end'>
           <LanguageSwitcher className='pointer-events-auto' />
         </div>

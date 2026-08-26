@@ -5,7 +5,7 @@ const LanguageSwitcher = ({ className = '' }) => {
 
   return (
     <div
-      className={`inline-flex overflow-hidden rounded-full border border-slate-300/80 bg-white/90 p-0.5 text-xs font-semibold text-slate-700 shadow-sm backdrop-blur-sm ${className}`}
+      className={`inline-flex shrink-0 overflow-hidden rounded-full border border-slate-300/80 bg-white/90 p-0.5 text-xs font-semibold text-slate-700 shadow-sm backdrop-blur-sm ${className}`}
       role='group'
       aria-label={t.lang.label}>
       <button
